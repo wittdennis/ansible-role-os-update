@@ -1,0 +1,27 @@
+galaxy_info:
+  author: Dennis Witt
+  description: Role to install OS Updates
+  license: MIT
+  min_ansible_version: "2.1"
+  namespace: wittdennis
+  role_name: os_update
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: GenericLinux
+      versions:
+        - all
+    - name: Windows
+      versions:
+        - all
+
+  galaxy_tags: [helm, tool-installer]
+
+dependencies: []

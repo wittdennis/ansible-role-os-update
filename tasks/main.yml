@@ -1,0 +1,22 @@
+---
+# tasks file for os-update
+- name: OS_UPDATE | Update to latest packages
+  ansible.builtin.package:
+    name:
+      - "*"
+    state: latest
+  tags:
+    # As we want to update the OS we actually want to update to latest
+    - skip_ansible_lint
+
+- name: OS_UPDATE | Check if reboot is required
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: OS_UPDATE | Restart system
+  when:
+    - (reboot_required.stat.exists and os_update_reboot != "NEVER") or os_update_reboot == "ALWAYS"
+  ansible.builtin.reboot:
+    reboot_timeout: "{{ os_update_reboot_timeout }}"
+    pre_reboot_delay: "{{ os_update_reboot_delay }}"

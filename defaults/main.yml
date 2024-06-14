@@ -1,0 +1,10 @@
+---
+# Possible Values
+# ALWAYS = Always reboot after updates
+# NEVER = Never reboot after updates
+# NEEDED = Only reboot after Kernel changes
+os_update_reboot: "NEEDED"
+
+# reboot options
+os_update_reboot_delay: 30
+os_update_reboot_timeout: 300

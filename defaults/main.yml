@@ -8,3 +8,6 @@ os_update_reboot: "NEEDED"
 # reboot options
 os_update_reboot_delay: 30
 os_update_reboot_timeout: 300
+
+os_update_dnf_excludes: []
+os_update_dist_upgrade: true

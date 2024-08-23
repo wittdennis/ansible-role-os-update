@@ -1,22 +1,20 @@
 ---
-# tasks file for os-update
-- name: OS_UPDATE | Update to latest packages
-  ansible.builtin.package:
-    name:
-      - "*"
-    state: latest
-  tags:
-    # As we want to update the OS we actually want to update to latest
-    - skip_ansible_lint
+- name: Set reboot fact
+  ansible.builtin.set_fact:
+    reboot_machine: false
 
-- name: OS_UPDATE | Check if reboot is required
-  ansible.builtin.stat:
-    path: /var/run/reboot-required
-  register: reboot_required
+- name: Install OS updates for RedHat family
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Rocky" or ansible_os_family == "AlmaLinux"
+  ansible.builtin.include_tasks:
+    file: RedHat.yml
 
-- name: OS_UPDATE | Restart system
-  when:
-    - (reboot_required.stat.exists and os_update_reboot != "NEVER") or os_update_reboot == "ALWAYS"
+- name: Install OS updates for Debian family
+  when: ansible_os_family == "Debian"
+  ansible.builtin.include_tasks:
+    file: Debian.yml
+
+- name: Restart system
+  when: reboot_machine
   ansible.builtin.reboot:
     reboot_timeout: "{{ os_update_reboot_timeout }}"
     pre_reboot_delay: "{{ os_update_reboot_delay }}"

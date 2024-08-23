@@ -1,0 +1,28 @@
+---
+- name: Install yum-utils for needs-restarting
+  ansible.builtin.package:
+    name:
+      - "yum-utils"
+    state: present
+
+- name: Install OS updates
+  ansible.builtin.dnf:
+    state: latest
+    name:
+      - "*"
+    exclude: "{{ os_update_dnf_excludes }}"
+    update_cache: true
+  tags:
+    - skip_ansible_lint
+
+- name: Check if reboot is required
+  ansible.builtin.command:
+    cmd: needs-restarting -r
+  changed_when: false
+  register: needs_restarting
+
+- name: Update reboot fact
+  when:
+    - (needs_restarting and os_update_reboot != "NEVER") or os_update_reboot == "ALWAYS"
+  ansible.builtin.set_fact:
+    reboot_machine: true

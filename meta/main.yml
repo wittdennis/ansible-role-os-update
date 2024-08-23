@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Dennis Witt
   description: Role to install OS Updates
@@ -15,10 +16,7 @@ galaxy_info:
     - name: Debian
       versions:
         - all
-    - name: GenericLinux
-      versions:
-        - all
-    - name: Windows
+    - name: Rocky
       versions:
         - all
 

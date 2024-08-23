@@ -18,11 +18,11 @@
 - name: Check if reboot is required
   ansible.builtin.command:
     cmd: needs-restarting -r
-  changed_when: false
+  changed_when: needs_restarting.rc == 1
   register: needs_restarting
 
 - name: Update reboot fact
   when:
-    - (needs_restarting and os_update_reboot != "NEVER") or os_update_reboot == "ALWAYS"
+    - (needs_restarting.rc == 1 and os_update_reboot != "NEVER") or os_update_reboot == "ALWAYS"
   ansible.builtin.set_fact:
     reboot_machine: true

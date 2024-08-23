@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.1.1](https://github.com/wittdennis/ansible-role-os-update/compare/10113b1887d20945e3f9c09fbf70293bb556b140..1.1.1) - 2024-08-23
+#### Bug Fixes
+- correctly set changed and failed state for needs-restarting on redhat - ([10113b1](https://github.com/wittdennis/ansible-role-os-update/commit/10113b1887d20945e3f9c09fbf70293bb556b140)) - Dennis Witt
+
+- - -
+
 ## [1.1.0](https://github.com/wittdennis/ansible-role-os-update/compare/3387ba60ad8e8fb262e5ce1e7b9d5c6a0f1c2f57..1.1.0) - 2024-08-23
 #### Bug Fixes
 - correctly determine if redhat system needs reboot - ([91ae010](https://github.com/wittdennis/ansible-role-os-update/commit/91ae0107b94e7fe27edffe3ef01c895f280517e9)) - Dennis Witt

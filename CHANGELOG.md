@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.1.0](https://github.com/wittdennis/ansible-role-os-update/compare/3387ba60ad8e8fb262e5ce1e7b9d5c6a0f1c2f57..1.1.0) - 2024-08-23
+#### Bug Fixes
+- correctly determine if redhat system needs reboot - ([91ae010](https://github.com/wittdennis/ansible-role-os-update/commit/91ae0107b94e7fe27edffe3ef01c895f280517e9)) - Dennis Witt
+#### Documentation
+- update README - ([f36bc5c](https://github.com/wittdennis/ansible-role-os-update/commit/f36bc5c5b94cbc56510ae29f0039952e234bc08d)) - Dennis Witt
+#### Features
+- ability to clean packages by specifing 'os_update_cleanup' - ([adcac4c](https://github.com/wittdennis/ansible-role-os-update/commit/adcac4c14dfe1e67800a3dfb082987f01917615a)) - Dennis Witt
+#### Miscellaneous Chores
+- **(deps)** update softprops/action-gh-release action to v2.0.8 - ([566b3bb](https://github.com/wittdennis/ansible-role-os-update/commit/566b3bbc2168bda6a474c5024bcd8f6054cf267e)) - wittdennis-renovate[bot]
+- **(deps)** update softprops/action-gh-release action to v2.0.7 - ([4216959](https://github.com/wittdennis/ansible-role-os-update/commit/4216959c07b7f41886e20218998734f5a0795560)) - wittdennis-renovate[bot]
+- **(deps)** update ansible/ansible-lint action to v24.7.0 - ([3387ba6](https://github.com/wittdennis/ansible-role-os-update/commit/3387ba60ad8e8fb262e5ce1e7b9d5c6a0f1c2f57)) - wittdennis-renovate[bot]
+- add pre-commit config to lint ansible files - ([89609be](https://github.com/wittdennis/ansible-role-os-update/commit/89609be424fb89511a17ab33efa4993b4a5d0ed7)) - Dennis Witt
+#### Tests
+- add smoke test for role - ([fb8fa2d](https://github.com/wittdennis/ansible-role-os-update/commit/fb8fa2d6f8aad75ca8860dd44596deab774001ed)) - Dennis Witt
+
+- - -
+
 ## [1.0.1](https://github.com/wittdennis/ansible-role-os-update/compare/39e505ac74a09bab047d121cd65ebba6e7a7f94f..1.0.1) - 2024-06-29
 #### Bug Fixes
 - set ansible galaxy metadata - ([de364ba](https://github.com/wittdennis/ansible-role-os-update/commit/de364ba1c6a86108fc7877907391d1792a7d6c77)) - Dennis Witt

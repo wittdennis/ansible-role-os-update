@@ -24,3 +24,5 @@
   ansible.builtin.apt:
     clean: true
     autoclean: true
+  tags:
+    - molecule-idempotence-notest

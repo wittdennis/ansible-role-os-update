@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: true
+  become: true
+  vars:
+    os_update_dist_upgrade: true
+  roles:
+    - { role: wittdennis.os_update }

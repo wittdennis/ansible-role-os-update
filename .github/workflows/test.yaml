@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: install test dependencies
         run: pip3 install ansible ansible-lint yamllint molecule molecule-plugins[podman]

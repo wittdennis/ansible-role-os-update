@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout
-        uses: actions/checkout@v4.2.1
+        uses: actions/checkout@v4.2.2
       - name: publish role
         run: |
           REPOSITORY_NAME=$(echo ${GITHUB_REPOSITORY} | cut -d '/' -f2)

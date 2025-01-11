@@ -6,4 +6,4 @@
   vars:
     os_update_dist_upgrade: true
   roles:
-    - { role: wittdennis.os_update }
+    - { role: ansible-role-os-update } # noqa: syntax-check[specific]

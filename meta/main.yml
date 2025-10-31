@@ -19,6 +19,9 @@ galaxy_info:
     - name: Rocky
       versions:
         - all
+    - name: Alpine
+      versions:
+        - all
 
   galaxy_tags: [update, maintenance]
 

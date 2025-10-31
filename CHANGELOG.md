@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.2.1](https://github.com/wittdennis/ansible-role-os-update/compare/1cef6bd86e7f1088ad1c938b35b8cf45eec5ce93..1.2.1) - 2025-10-31
+#### Bug Fixes
+- reboot alpine only when updates where made - ([1cef6bd](https://github.com/wittdennis/ansible-role-os-update/commit/1cef6bd86e7f1088ad1c938b35b8cf45eec5ce93)) - Dennis Witt
+
+- - -
+
 ## [1.2.0](https://github.com/wittdennis/ansible-role-os-update/compare/4b6cdbf3fd82646ae8b0201bd3cd3b86791dcf30..1.2.0) - 2025-10-31
 #### Features
 - support for Alpine Linux - ([63b9a94](https://github.com/wittdennis/ansible-role-os-update/commit/63b9a949bfa50a5753043d97c6509da81a9e7782)) - Dennis Witt

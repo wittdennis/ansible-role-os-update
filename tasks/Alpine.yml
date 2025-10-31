@@ -15,6 +15,6 @@
       If you want to reboot the system after an OS update, you have to use the "ALWAYS" mode.
 
 - name: Update reboot fact
-  when: os_update_reboot == "ALWAYS"
+  when: os_update_reboot == "ALWAYS" && alpine_os_update.changed # noqa: no-handler
   ansible.builtin.set_fact:
     reboot_machine: true

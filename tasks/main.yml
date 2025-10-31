@@ -1,3 +1,4 @@
+# code:language=ansible
 ---
 - name: Set reboot fact
   ansible.builtin.set_fact:
@@ -12,6 +13,11 @@
   when: ansible_os_family == "Debian"
   ansible.builtin.include_tasks:
     file: Debian.yml
+
+- name: Install OS updates for Alpine
+  when: ansible_facts['distribution'] == 'Alpine'
+  ansible.builtin.include_tasks:
+    file: Alpine.yml
 
 - name: Restart system
   when: reboot_machine

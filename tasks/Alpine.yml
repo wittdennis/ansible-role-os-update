@@ -1,0 +1,20 @@
+# code:language=ansible
+---
+- name: Install OS updates
+  community.general.apk:
+    update_cache: true
+    upgrade: true
+    available: true
+
+- name: Print info that needs reboot can't be determined as of now
+  when: os_update_reboot == "NEEDED"
+  ansible.builtin.debug:
+    msg: >
+      Currently there is no way to determine if the system needs a reboot.
+      The system will not reboot in mode "NEEDED".
+      If you want to reboot the system after an OS update, you have to use the "ALWAYS" mode.
+
+- name: Update reboot fact
+  when: os_update_reboot == "ALWAYS"
+  ansible.builtin.set_fact:
+    reboot_machine: true

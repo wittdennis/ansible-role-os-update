@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [1.2.2](https://github.com/wittdennis/ansible-role-os-update/compare/85cf81457a49ef7cc18d19793b56068424888ee0..1.2.2) - 2025-11-13
+#### Bug Fixes
+- conditional in alpine reboot task - ([d4994f2](https://github.com/wittdennis/ansible-role-os-update/commit/d4994f27afb9cc4756213f771679d7e849d93724)) - Dennis Witt
+#### Miscellaneous Chores
+- (**deps**) update pre-commit hook ansible-community/ansible-lint to v25.11.0 - ([363c035](https://github.com/wittdennis/ansible-role-os-update/commit/363c035d20d8ceff51932a9bd3cf3f28d67de51d)) - wittdennis-renovate[bot]
+- (**deps**) update wittdennis/pipelines action to v1.12.7 - ([137bbe0](https://github.com/wittdennis/ansible-role-os-update/commit/137bbe03b82120d2f57ea8757be024a9e6940673)) - wittdennis-renovate[bot]
+- (**deps**) update wittdennis/pipelines action to v1.12.6 - ([24df910](https://github.com/wittdennis/ansible-role-os-update/commit/24df91071774d83e139730a1d0c38e6f4cfe3fff)) - wittdennis-renovate[bot]
+- (**deps**) update wittdennis/pipelines action to v1.12.5 - ([85cf814](https://github.com/wittdennis/ansible-role-os-update/commit/85cf81457a49ef7cc18d19793b56068424888ee0)) - wittdennis-renovate[bot]
+
+- - -
+
 ## [1.2.1](https://github.com/wittdennis/ansible-role-os-update/compare/1cef6bd86e7f1088ad1c938b35b8cf45eec5ce93..1.2.1) - 2025-10-31
 #### Bug Fixes
 - reboot alpine only when updates where made - ([1cef6bd](https://github.com/wittdennis/ansible-role-os-update/commit/1cef6bd86e7f1088ad1c938b35b8cf45eec5ce93)) - Dennis Witt

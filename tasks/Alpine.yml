@@ -1,6 +1,7 @@
 # code:language=ansible
 ---
 - name: Install OS updates
+  register: alpine_os_update
   community.general.apk:
     update_cache: true
     upgrade: true

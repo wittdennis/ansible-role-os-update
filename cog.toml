@@ -21,13 +21,13 @@ skip_untracked = false
 [commit_types]
 
 [changelog]
-authors = [] 
-owner = "wittdennis" 
-path = "CHANGELOG.md" 
-remote = "github.com" 
-repository = "ansible-role-os-update" 
+authors = []
+owner = "wittdennis"
+path = "CHANGELOG.md"
+remote = "github.com"
+repository = "ansible-role-os-update"
 template = "remote" # to change to remote set repository to repository name
 
 [bump_profiles]
 
-[packages]
+[monorepo.packages]

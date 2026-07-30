@@ -1,12 +1,14 @@
 # code:language=ansible
 ---
 - name: Install yum-utils for needs-restarting
+  become: true
   ansible.builtin.package:
     name:
       - "yum-utils"
     state: present
 
 - name: Install OS updates
+  become: true
   ansible.builtin.dnf:
     state: latest
     name:

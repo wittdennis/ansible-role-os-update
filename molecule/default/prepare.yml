@@ -1,8 +1,47 @@
 ---
 - name: Prepare
+  hosts: ubuntu:rocky
+  gather_facts: false
+  tasks:
+    - name: Wait for systemd to finish starting up
+      ansible.builtin.command: systemctl is-system-running --wait # noqa: command-instead-of-module
+      register: systemd_status
+      changed_when: false
+      failed_when: false
+
+- name: Prepare
+  hosts: rocky
+  gather_facts: false
+  tasks:
+    - name: Drop the dead sss entry from nsswitch (sssd isn't installed in this image)
+      ansible.builtin.replace:
+        path: /etc/nsswitch.conf
+        regexp: '^(passwd|group):(\s+)sss (.*)$'
+        replace: '\1:\2\3'
+
+    - name: Fix /etc/shadow permissions
+      ansible.builtin.file:
+        path: /etc/shadow
+        mode: "0600"
+
+    - name: Verify sudo's PAM account phase succeeds
+      ansible.builtin.command: sudo -n true
+      register: sudo_check
+      changed_when: false
+      failed_when: sudo_check.rc != 0
+
+- name: Prepare
   hosts: alpine
   gather_facts: false
   tasks:
-    - name: Install python3 and sudo (missing on the base alpine image)
-      ansible.builtin.raw: apk add --no-cache python3 sudo
+    - name: Install python3 and doas (missing on the base alpine image)
+      ansible.builtin.raw: apk add --no-cache python3 doas
       changed_when: false
+
+    - name: Allow root to doas without a password
+      ansible.builtin.copy:
+        dest: /etc/doas.conf
+        content: "permit nopass root as root\n"
+        owner: root
+        group: root
+        mode: "0640"

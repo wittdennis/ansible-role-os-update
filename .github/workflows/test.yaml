@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     env:
-      ANSIBLE_ROLES_PATH: ".."
+      ANSIBLE_ROLES_PATH: ${{ github.workspace }}/..
     steps:
       - name: checkout
         uses: actions/checkout@v5.0.0

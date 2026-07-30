@@ -32,5 +32,9 @@ provisioner:
   name: ansible
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+  inventory:
+    host_vars:
+      alpine:
+        ansible_become_method: community.general.doas
 scenario:
   name: default

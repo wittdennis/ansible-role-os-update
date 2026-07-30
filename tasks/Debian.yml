@@ -2,12 +2,14 @@
 ---
 - name: Install OS updates (include dist-upgrade)
   when: os_update_dist_upgrade
+  become: true
   ansible.builtin.apt:
     update_cache: true
     upgrade: "full"
 
 - name: Install OS updates (no dist-upgrade)
   when: not os_update_dist_upgrade
+  become: true
   ansible.builtin.apt:
     update_cache: true
     name:

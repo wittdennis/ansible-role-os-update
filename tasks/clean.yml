@@ -2,11 +2,13 @@
 ---
 - name: Remove dependencies that are no longer needed for RedHat family
   when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Rocky" or ansible_facts['os_family'] == "AlmaLinux"
+  become: true
   ansible.builtin.dnf:
     autoremove: true
 
 - name: Clean dnf cache
   when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Rocky" or ansible_facts['os_family'] == "AlmaLinux"
+  become: true
   ansible.builtin.command:
     cmd: >
       dnf clean all
@@ -16,12 +18,14 @@
 
 - name: Remove dependencies that are no longer needed for Debian family
   when: ansible_facts['os_family'] == "Debian"
+  become: true
   ansible.builtin.apt:
     autoremove: true
     purge: true
 
 - name: Clean apt cache
   when: ansible_facts['os_family'] == "Debian"
+  become: true
   ansible.builtin.apt:
     clean: true
     autoclean: true

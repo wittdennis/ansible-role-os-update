@@ -21,6 +21,7 @@
 
 - name: Restart system
   when: reboot_machine
+  become: true
   ansible.builtin.reboot:
     reboot_timeout: "{{ os_update_reboot_timeout }}"
     pre_reboot_delay: "{{ os_update_reboot_delay }}"

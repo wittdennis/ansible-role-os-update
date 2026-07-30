@@ -1,6 +1,9 @@
 ---
 dependency:
   name: galaxy
+  options:
+    role-file: ${MOLECULE_PROJECT_DIRECTORY}/requirements.yml
+    requirements-file: ${MOLECULE_PROJECT_DIRECTORY}/requirements.yml
 driver:
   name: podman
 lint: |
@@ -22,6 +25,9 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     privileged: true
     pre_build_image: true
+  - name: alpine
+    image: ${MOLECULE_DISTRO:-alpine:3.24.1}
+    command: tail -f /dev/null
 provisioner:
   name: ansible
   playbooks:

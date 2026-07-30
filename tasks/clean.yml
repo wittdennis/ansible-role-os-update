@@ -1,13 +1,13 @@
 # code:language=ansible
 ---
 - name: Remove dependencies that are no longer needed for RedHat family
-  when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Rocky" or ansible_facts['os_family'] == "AlmaLinux"
+  when: ansible_facts['os_family'] == "RedHat"
   become: true
   ansible.builtin.dnf:
     autoremove: true
 
 - name: Clean dnf cache
-  when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Rocky" or ansible_facts['os_family'] == "AlmaLinux"
+  when: ansible_facts['os_family'] == "RedHat"
   become: true
   ansible.builtin.command:
     cmd: >

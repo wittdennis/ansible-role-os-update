@@ -6,7 +6,7 @@
     - name: Print env
       ansible.builtin.debug:
         msg:
-          - "ansible_version => {{ ansible_facts['version'] }}"
+          - "ansible_version => {{ ansible_version.full }}"
           - "ansible_distribution => {{ ansible_facts['distribution'] }}"
           - "ansible_distribution_major_version => {{ ansible_facts['distribution_major_version'] }}"
           - "ansible_os_family  => {{ ansible_facts['os_family'] }}"
@@ -14,3 +14,74 @@
 
     - name: Smoke Test
       ansible.builtin.ping:
+
+    - name: Check update result for Debian family
+      when: ansible_facts['os_family'] == "Debian"
+      block:
+        - name: List upgradable apt packages
+          ansible.builtin.command: apt list --upgradable
+          register: apt_upgradable
+          changed_when: false
+
+        - name: Assert no packages are left upgradable
+          ansible.builtin.assert:
+            that: apt_upgradable.stdout_lines | reject('match', '^Listing') | list | length == 0
+            fail_msg: "Packages still upgradable after os-update ran: {{ apt_upgradable.stdout_lines }}"
+
+        - name: Check apt archive cache was cleaned
+          ansible.builtin.find:
+            paths: /var/cache/apt/archives
+            patterns: "*.deb"
+          register: apt_cache_files
+
+        - name: Assert apt cache is empty
+          ansible.builtin.assert:
+            that: apt_cache_files.matched == 0
+            fail_msg: "apt cache still contains .deb files: {{ apt_cache_files.files | map(attribute='path') | list }}"
+
+    - name: Check update result for RedHat family
+      when: ansible_facts['os_family'] == "RedHat"
+      block:
+        - name: Check for available dnf updates
+          ansible.builtin.command: dnf check-update
+          register: dnf_check_update
+          changed_when: false
+          failed_when: dnf_check_update.rc not in [0, 100]
+
+        - name: Assert no packages are left upgradable
+          ansible.builtin.assert:
+            that: dnf_check_update.rc == 0
+            fail_msg: "Packages still upgradable after os-update ran: {{ dnf_check_update.stdout }}"
+
+        - name: Gather installed package facts
+          ansible.builtin.package_facts:
+
+        - name: Assert yum-utils is installed
+          ansible.builtin.assert:
+            that: "'yum-utils' in ansible_facts.packages"
+            fail_msg: "yum-utils is not installed"
+
+        - name: Check dnf cache was cleaned
+          ansible.builtin.find:
+            paths: /var/cache/dnf
+            patterns: "*.rpm"
+            recurse: true
+          register: dnf_cache_files
+
+        - name: Assert dnf cache is empty
+          ansible.builtin.assert:
+            that: dnf_cache_files.matched == 0
+            fail_msg: "dnf cache still contains .rpm files: {{ dnf_cache_files.files | map(attribute='path') | list }}"
+
+    - name: Check update result for Alpine
+      when: ansible_facts['distribution'] == 'Alpine'
+      block:
+        - name: List outdated apk packages
+          ansible.builtin.command: apk version -l '<'
+          register: apk_outdated
+          changed_when: false
+
+        - name: Assert no packages are left outdated
+          ansible.builtin.assert:
+            that: apk_outdated.stdout_lines | reject('match', '^Installed') | list | length == 0
+            fail_msg: "Packages still outdated after os-update ran: {{ apk_outdated.stdout_lines }}"

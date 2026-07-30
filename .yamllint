@@ -13,3 +13,7 @@ rules:
   braces:
     max-spaces-inside: 1
     max-spaces-inside-empty: 0
+  comments-indentation: false
+  octal-values:
+    forbid-implicit-octal: true
+    forbid-explicit-octal: true

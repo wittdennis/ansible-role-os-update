@@ -2,5 +2,15 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>wittdennis/renovate-config"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^molecule/default/molecule\\.yml$"],
+      "matchStrings": [
+        "image:\\s*\\$\\{MOLECULE_DISTRO:-(?<depName>[a-z0-9._-]+):(?<currentValue>[\\w.]+)\\}"
+      ],
+      "datasourceTemplate": "docker"
+    }
   ]
 }
